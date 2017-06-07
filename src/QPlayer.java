@@ -14,7 +14,7 @@ public class QPlayer {
 		player = img.getImage();	
 		
 		tileX = 0;
-		tileY = 0;
+		tileY = 1;
 	}
 	
 	public Image getPlayer(){

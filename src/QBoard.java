@@ -21,10 +21,11 @@ public class QBoard extends JPanel {
 
 		m = new QMap();
 		p = new QPlayer();
-		p.move(2, 1);
+		//p.move(2, 1);
 
 		setFocusable(true);
 		// new MovePlayer();
+		//repaint();
 
 	}
 
@@ -38,7 +39,6 @@ public class QBoard extends JPanel {
 
 					if (m.getMap(x, y).equals("2")) {
 						g.drawImage(m.getFinish(), x * 32, y * 32, null);
-
 					}
 
 					if (m.getMap(x, y).equals("1")) {
