@@ -21,11 +21,12 @@ public class QBoard extends JPanel {
 
 		m = new QMap();
 		p = new QPlayer();
-		//p.move(2, 1);
+		p.move(1,0);
+		//p.move(9, 9);
 
 		setFocusable(true);
-		// new MovePlayer();
-		//repaint();
+		movePlayerAuto();
+		repaint();
 
 	}
 
@@ -61,60 +62,62 @@ public class QBoard extends JPanel {
 
 	}
 
-	// public class MovePlayer{
-	// public void MovePlayer(){
-	//
-	// QLearning2 obj = new QLearning2();
-	//
-	// int i = 0, j =0;
-	// p.move(i, j);
-	//
-	// while( i < 9 && j < 9 && win != true){
-	//
-	// if( obj.maze[i][j] == 1){
-	// int position = i*10 +j;
-	// int from = 0;
-	//
-	// while(position != obj.availableStates[from]){
-	// from++;
-	// }
-	//
-	// int toState = obj.goTo[from];
-	// int toPosition = obj.availableStates[toState];
-	//
-	// int jToPosition = toPosition%10;
-	// int iToPosition = (toPosition/10)%10;
-	//
-	// if( i > iToPosition && j == jToPosition){
-	// p.move(0, -1);
-	// i = iToPosition;
-	// j = jToPosition;
-	// }
-	//
-	// if( i < iToPosition && j == jToPosition){
-	// p.move(0, 1);
-	// i = iToPosition;
-	// j = jToPosition;
-	// }
-	//
-	// if( i == iToPosition && j > jToPosition){
-	// p.move( -1, 0);
-	// i = iToPosition;
-	// j = jToPosition;
-	// }
-	//
-	// if( i == iToPosition && j < jToPosition){
-	// p.move(1, 0);
-	// i = iToPosition;
-	// j = jToPosition;
-	// }
-	// }
-	//
-	// if( obj.maze[i][j] == 2){
-	// win = true;
-	// }
-	// }
-	// }
-	// }
+	public void movePlayerAuto() {
 
+		QLearning2 qlearning = new QLearning2();
+		qlearning.calculate();
+		//obj.afiseaza();
+		
+		int i = 1, j = 0;
+
+		while (win != true) {
+
+			if (qlearning.maze[i][j] == 1) {
+				int position = i * 10 + j;
+				int from = 0;
+
+				while (position != qlearning.availableStates[from]) {
+					from++;
+				}
+
+				int toState = qlearning.goTo[from];
+				int toPosition = qlearning.availableStates[toState];
+
+				int jToPosition = toPosition % 10;
+				int iToPosition = (toPosition / 10) % 10;
+
+				if (i > iToPosition && j == jToPosition) {
+					p.move(0, -1);
+					repaint();
+					i = iToPosition;
+					j = jToPosition;
+				}
+
+				if (i < iToPosition && j == jToPosition) {
+					p.move(0, 1);
+					repaint();
+					i = iToPosition;
+					j = jToPosition;
+				}
+
+				if (i == iToPosition && j > jToPosition) {
+					p.move(-1, 0);
+					repaint();
+					i = iToPosition;
+					j = jToPosition;
+				}
+
+				if (i == iToPosition && j < jToPosition) {
+					p.move(1, 0);
+					repaint();
+					i = iToPosition;
+					j = jToPosition;
+				}
+			}
+
+			if (qlearning.maze[i][j] == 2) {
+				win = true;
+			}
+		}
+	}
 }

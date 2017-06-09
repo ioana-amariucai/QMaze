@@ -13,8 +13,8 @@ public class QPlayer {
 		ImageIcon img = new ImageIcon("D://Licenta//QMaze//utils//player.png");
 		player = img.getImage();	
 		
-		tileX = 0;
-		tileY = 1;
+//		tileX = 0;
+//		tileY = 1;
 	}
 	
 	public Image getPlayer(){
