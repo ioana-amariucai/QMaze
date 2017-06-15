@@ -21,7 +21,7 @@ public class QBoard extends JPanel {
 
 		m = new QMap();
 		p = new QPlayer();
-		p.move(1,0);
+		p.move(0,1);
 		//p.move(9, 9);
 
 		setFocusable(true);
@@ -63,19 +63,23 @@ public class QBoard extends JPanel {
 	}
 
 	public void movePlayerAuto() {
-
+		
 		QLearning2 qlearning = new QLearning2();
-		qlearning.calculate();
+		//qlearning.calculate();
 		//obj.afiseaza();
 		
 		int i = 1, j = 0;
-
-		while (win != true) {
+		int k = 1;
+		while (win != true && k==1) {
 
 			if (qlearning.maze[i][j] == 1) {
 				int position = i * 10 + j;
+				
 				int from = 0;
-
+				
+				for(int o = 0; o < 9; o++){
+					System.out.print(qlearning.goTo[o]+" ");
+				}
 				while (position != qlearning.availableStates[from]) {
 					from++;
 				}
@@ -118,6 +122,7 @@ public class QBoard extends JPanel {
 			if (qlearning.maze[i][j] == 2) {
 				win = true;
 			}
+			k=2;
 		}
 	}
 }

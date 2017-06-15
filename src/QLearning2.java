@@ -241,31 +241,32 @@ public class QLearning2 {
 	public void init() {
 		R[7][8] = 100;
 		calculate();
-		run();
+		//run();
 		//printResult();
+		afiseaza();
 		showPolicy();
 	}
 
-	void run() {
-		Random rand = new Random();
-		for (int i = 0; i < 1000; i++) {
-			int state = rand.nextInt(9);
-			while (state != 8) {
-				int[] actionsFromState = new int[9];
-				actionsFromState(state, actionsFromState);
-				int actionsCounter = actionsCounter(actionsFromState);
-				int index = rand.nextInt(actionsCounter);
-				int action = actionsFromState[index];
-				int nextState = action;
-				double q = getQ(state, action);
-				double maxQ = maxQ(nextState);
-				int r = getR(state, action);
-				double value = q + alpha * (r + gamma * maxQ - q);
-				setQ(state, action, value);
-				state = nextState;
-			}
-		}
-	}
+//	void run() {
+//		Random rand = new Random();
+//		for (int i = 0; i < 1000; i++) {
+//			int state = rand.nextInt(9);
+//			while (state != 8) {
+//				int[] actionsFromState = new int[9];
+//				actionsFromState(state, actionsFromState);
+//				int actionsCounter = actionsCounter(actionsFromState);
+//				int index = rand.nextInt(actionsCounter);
+//				int action = actionsFromState[index];
+//				int nextState = action;
+//				double q = getQ(state, action);
+//				double maxQ = maxQ(nextState);
+//				int r = getR(state, action);
+//				double value = q + alpha * (r + gamma * maxQ - q);
+//				setQ(state, action, value);
+//				state = nextState;
+//			}
+//		}
+//	}
 
 	double maxQ(int s) {
 		int[] actionsFromState = new int[9];
@@ -330,7 +331,6 @@ public class QLearning2 {
 			int from = i;
 			int to = policy(from);
 			goTo[from] = to;
-			// System.out.println("from " + from+ " go to " + to);
 		}
 	}
 

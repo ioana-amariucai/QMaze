@@ -82,7 +82,7 @@ public class QMap {
 			for(int k = 0; k < 5; k++){
 				String character = m.next(); //
 				int result = Integer.parseInt(character);
-				maze[i][j] = result;
+				//maze[i][j] = result;
 				Map[k] = character; 
 			}
 		}
@@ -305,6 +305,5 @@ public class QMap {
 		}
 		System.out.println();
 	}
-	
 
 }
